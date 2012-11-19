@@ -1,0 +1,18 @@
+{
+    "commands": {
+        "^!help$": "Available commands: !streams, !help
+	},
+
+    "owner_commands": {
+        "^!quit$": "quit()"
+    },
+
+    "execs": {
+        "^!song$": "sendmsg(\"Now playing: %s - %s (album: %s)\" % (lastfm.artistName.encode('utf-8'), lastfm.trackName.encode('utf-8'), lastfm.albumName.encode('utf-8')))",
+        "(http:\/\/)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)"
+   },
+
+    "triggers": {
+        "FrankerZ": "FrankerZ",
+    }
+}

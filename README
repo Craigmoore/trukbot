@@ -1,0 +1,7 @@
+trukbot
+
+Simple, messy, probably badly made twitch.tv chatbot made in python.
+Comes with two modules, TF2Lobby.py and Lastfm.py.
+TF2Lobby module grabs lobby name and what map it is on, and last.fm module grabs current playing song/song last played.
+
+Adding commands is done through the existing commands.json file and configuration is done with botcfg.cfg.
