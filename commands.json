@@ -1,6 +1,6 @@
 {
     "commands": {
-        "^!help$": "Available commands: !streams, !help
+        "^!help$": "Available commands: !streams, !help"
 	},
 
     "owner_commands": {
@@ -13,6 +13,6 @@
    },
 
     "triggers": {
-        "FrankerZ": "FrankerZ",
+        "FrankerZ": "FrankerZ"
     }
 }
