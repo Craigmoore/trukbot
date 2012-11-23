@@ -9,7 +9,9 @@
 
     "execs": {
         "^!song$": "sendmsg(\"Now playing: %s - %s (album: %s)\" % (lastfm.artistName.encode('utf-8'), lastfm.trackName.encode('utf-8'), lastfm.albumName.encode('utf-8')))",
-        "(http:\/\/)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)"
+        "(http:\/\/)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)",
+        "(https?://[\\w./?=]+": "linkparser.Main(url)"
+
    },
 
     "triggers": {
