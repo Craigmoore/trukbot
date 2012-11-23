@@ -12,8 +12,8 @@ class NowPlaying():
 	def __init__(self):
 		print "lastfm.py loaded!"
 
-	def main(self, lastfmuser):
-		self.readapi(lastfmuser)
+	def main(self, lastfmuser, apikey):
+		self.readapi(lastfmuser, apikey)
 		seconds = 1
 		sleep(1)
 		seconds += 1
