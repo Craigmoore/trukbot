@@ -5,7 +5,7 @@ from modules import lastfm, tf2lobby, links
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 commands = {}
 parser = RawConfigParser()
-np, lobbyparser, linkparser = lastfm.NowPlaying(), tf2lobby.lobbyParser(), links.LinksParser()
+np, linkparser = lastfm.NowPlaying(), links.LinksParser()
 
 parser.read('botcfg.cfg')
 
@@ -20,10 +20,6 @@ def connect(server, port):
 	ircsock.send("Pass %s\n" % (password))
 	ircsock.send("NICK %s\n" % (botnick))
 	ircsock.send("JOIN %s\n" % (channel))
-
-def doTF2Lobby(lobby):
-	lobbyParser.main(lobby)
-	sendmsg("Name: \"%s\" is on map \"%s\"" % (tf2lobby.lobbyname, tf2lobby.mapname))
 
 def doLinks(msg):
 	linkparser.Main(msg)
