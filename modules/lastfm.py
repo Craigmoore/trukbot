@@ -18,10 +18,10 @@ class NowPlaying():
 		sleep(1)
 		seconds += 1
 		if seconds % 30 == 0:
-			self.readapi(lastfmuser)
+			self.readapi(lastfmuser, apikey)
 	
-	def readapi(self, lastfmuser, apikey):
-		api = urllib2.urlopen('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + lastfmuser + '&api_key=' + apikey)
+	def readapi(self, lastfmuser, key):
+		api = urllib2.urlopen('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + lastfmuser + '&api_key=' + key)
 		apidata = api.read()
 		api.close()
 		self.parsing(apidata)

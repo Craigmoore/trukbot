@@ -1,11 +1,11 @@
 import re, socket, json, threading
 from ConfigParser import RawConfigParser
-from modules import lastfm, tf2lobby
+from modules import lastfm, tf2lobby, links
 
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 commands = {}
 parser = RawConfigParser()
-np, lobbyparser = lastfm.NowPlaying(), tf2lobby.lobbyParser()
+np, lobbyparser, linkparser = lastfm.NowPlaying(), tf2lobby.lobbyParser(), links.LinksParser()
 
 parser.read('botcfg.cfg')
 
@@ -24,6 +24,10 @@ def connect(server, port):
 def doTF2Lobby(lobby):
 	lobbyParser.main(lobby)
 	sendmsg("Name: \"%s\" is on map \"%s\"" % (tf2lobby.lobbyname, tf2lobby.mapname))
+
+def doLinks(msg):
+	linkparser.Main(msg)
+	sendmsg("Page title: %s" % (links.title))
 
 def sendmsg(message):
 	ircsock.send('PRIVMSG %s :%s\n' % (channel, message))
