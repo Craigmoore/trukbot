@@ -25,6 +25,10 @@ def doTF2Lobby(msg):
 	lobbyparser.main(msg)
 	sendmsg("%s name: %s map: %s" % (msg, tf2lobby.lobbyname, tf2lobby.mapname))
 
+def doLastFM():
+	np.main(lastfmuser, lastfmapikey)
+	sendmsg("Now playing: %s - %s (album: %s)" % (lastfm.artistName, lastfm.trackName, lastfm.albumName))
+
 def doLinks(msg):
 	linkparser.Main(msg)
 	sendmsg("Page title: %s" % (links.title))
@@ -66,9 +70,6 @@ def triggers(msg, sendmsg):
 
 def main():
 	dict()
-	t = threading.Thread(target = LastFMMain)
-	t.setDaemon(True)
-	t.start()
 
 	try:
 		connect(server, 6667)
