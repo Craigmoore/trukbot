@@ -9,7 +9,7 @@ np, lobbyparser = lastfm.NowPlaying(), tf2lobby.lobbyParser()
 
 parser.read('botcfg.cfg')
 
-botnick, password, streamname, lastfmuser, owner = parser.get('settings', 'botnick'), parser.get('settings', 'password'), parser.get('settings', 'streamname'), parser.get('settings', 'lastfmuser'), parser.get('settings', 'owner')
+botnick, password, streamname, lastfmuser, lastfmapikey, owner = parser.get('settings', 'botnick'), parser.get('settings', 'password'), parser.get('settings', 'streamname'), parser.get('settings', 'lastfmuser'), parser.get('settings', 'lastfmapikey'), parser.get('settings', 'owner')
 
 server, channel = "%s.jtvirc.com" % (streamname), "#%s" % (streamname)
 

@@ -3,8 +3,6 @@ import re
 from time import sleep
 from xml.dom.minidom import parseString
 
-lastfmApiKey = "enter your api key here."
-
 trackName = ""
 artistName = ""
 albumName = ""
@@ -22,8 +20,8 @@ class NowPlaying():
 		if seconds % 30 == 0:
 			self.readapi(lastfmuser)
 	
-	def readapi(self, lastfmuser):
-		api = urllib2.urlopen('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + lastfmuser + '&api_key=' + lastfmApiKey)
+	def readapi(self, lastfmuser, apikey):
+		api = urllib2.urlopen('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + lastfmuser + '&api_key=' + apikey)
 		apidata = api.read()
 		api.close()
 		self.parsing(apidata)
