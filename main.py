@@ -12,6 +12,7 @@ parser.read('botcfg.cfg')
 botnick, password, streamname, lastfmuser, lastfmapikey, owner = parser.get('settings', 'botnick'), parser.get('settings', 'password'), parser.get('settings', 'streamname'), parser.get('settings', 'lastfmuser'), parser.get('settings', 'lastfmapikey'), parser.get('settings', 'owner')
 
 server, channel = "%s.jtvirc.com" % (streamname), "#%s" % (streamname)
+picks = 0
 
 LastFMMain = np.main(lastfmuser, lastfmapikey)
 
@@ -32,6 +33,11 @@ def doLastFM():
 def doLinks(msg):
 	linkparser.Main(msg)
 	sendmsg("Page title: %s" % (links.title))
+	
+def DispenserPicks():
+	global picks
+	picks += 1
+	sendmsg("Dispenser picks: %s" % (picks))
 
 def sendmsg(message):
 	ircsock.send('PRIVMSG %s :%s\n' % (channel, message))

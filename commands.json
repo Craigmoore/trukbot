@@ -9,7 +9,8 @@
 
     "execs": {
         "^!song$": "doLastFM()",
-        "(http://)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)"
+        "(http://)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)",
+        "dispenser pick": "DispenserPicks()"
 
    },
 
