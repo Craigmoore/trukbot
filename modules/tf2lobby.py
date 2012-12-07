@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-import json
-import urllib2
-import re
+import json, urllib2, re
 
 API = "http://tf2lobby.com/api/lobbies"
 lobbyname = ""
@@ -40,5 +38,3 @@ class lobbyParser:
 			if item["lobbyId"] == lobbyid:
 				lobbyname = item["lobbyName"]
 				mapname = item["mapName"]
-				lobbyname = lobbyname.encode("utf-8")
-				mapname = mapname.encode("utf-8")
