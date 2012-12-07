@@ -1,8 +1,6 @@
-﻿import urllib2
-import re
-from time import sleep
-from xml.dom.minidom import parseString
+﻿import urllib2, re, json
 
+ApiURL = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user="
 trackName = ""
 artistName = ""
 albumName = ""
@@ -14,34 +12,16 @@ class NowPlaying():
 
 	def main(self, lastfmuser, apikey):
 		self.readapi(lastfmuser, apikey)
-		seconds = 1
-		sleep(1)
-		seconds += 1
-		if seconds % 30 == 0:
-			self.readapi(lastfmuser, apikey)
 	
 	def readapi(self, lastfmuser, key):
-		api = urllib2.urlopen('http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + lastfmuser + '&api_key=' + key)
+		api = urllib2.urlopen("%s%s&api_key=%s&format=json" % (ApiURL, lastfmuser, key))
 		apidata = api.read()
 		api.close()
 		self.parsing(apidata)
 
-	def parsing(self, data):		
-		dom = parseString(data)
-		xmltrackName = dom.getElementsByTagName('name')[0].toxml()
-		xmlartistName = dom.getElementsByTagName('artist')[0].toxml()
-		xmlalbumName = dom.getElementsByTagName('album')[0].toxml()
-		
-		global trackName
-		trackName = xmltrackName.replace('<name>', '').replace('</name>', '')
-		trackName = trackName.replace('&amp;', '&')
-		trackName = trackName.encode("utf-8")
-		global artistName
-		artistName = xmlartistName.replace('</artist>', '')
-		artistName = re.sub('.artist.{0,45}>', '', artistName)
-		artistName = artistName.replace('&amp;', '&')
-		artistName = artistName.encode("utf-8")
-		global albumName
-		albumName = xmlalbumName.replace('</album>', '')
-		albumName = re.sub('.album.{0,45}>', '', albumName)
-		albumName = albumName.encode("utf-8")
+	def parsing(self, data):
+		global trackName, artistName, albumName
+		data = json.loads(data)
+		artistName = data["recenttracks"]["track"][0]["artist"]["#text"]
+		trackName = data["recenttracks"]["track"][0]["name"]
+		albumName = data["recenttracks"]["track"][0]["album"]["#text"]
