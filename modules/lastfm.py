@@ -25,3 +25,6 @@ class NowPlaying():
 		artistName = data["recenttracks"]["track"][0]["artist"]["#text"]
 		trackName = data["recenttracks"]["track"][0]["name"]
 		albumName = data["recenttracks"]["track"][0]["album"]["#text"]
+		artistName = artistName.encode("utf-8")
+		trackName = trackName.encode("utf-8")
+		albumName = albumName.encode("utf-8")
