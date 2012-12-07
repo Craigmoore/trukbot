@@ -5,7 +5,7 @@ from modules import lastfm, tf2lobby, links
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 commands = {}
 parser = RawConfigParser()
-linkparser, lobbyparser = links.LinksParser(), tf2lobby.lobbyParser()
+np, linkparser, lobbyparser = lastfm.NowPlaying(), links.LinksParser(), tf2lobby.lobbyParser()
 
 parser.read('botcfg.cfg')
 
@@ -13,8 +13,6 @@ botnick, password, streamname, lastfmuser, lastfmapikey, owner = parser.get('set
 
 server, channel = "%s.jtvirc.com" % (streamname), "#%s" % (streamname)
 picks = 0
-
-LastFMMain = np.main(lastfmuser, lastfmapikey)
 
 def connect(server, port):
 	ircsock.connect((server, port))
@@ -27,7 +25,6 @@ def doTF2Lobby(msg):
 	sendmsg("%s name: %s map: %s" % (msg, tf2lobby.lobbyname, tf2lobby.mapname))
 
 def doLastFM():
-	np = lastfm.NowPlaying()
 	np.main(lastfmuser, lastfmapikey)
 	sendmsg("Now playing: %s - %s (album: %s)" % (lastfm.artistName, lastfm.trackName, lastfm.albumName))
 
