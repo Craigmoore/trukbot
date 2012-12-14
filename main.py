@@ -14,8 +14,6 @@ botnick, password, streamname, lastfmuser, lastfmapikey, owner = parser.get('set
 server, channel = "%s.jtvirc.com" % (streamname), "#%s" % (streamname)
 picks = 0
 
-LastFMMain = np.main(lastfmuser, lastfmapikey)
-
 def connect(server, port):
 	ircsock.connect((server, port))
 	ircsock.send("Pass %s\n" % (password))
