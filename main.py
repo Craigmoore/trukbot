@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import re, socket, json, threading
 from ConfigParser import RawConfigParser
-from modules import lastfm, tf2lobby, links
+from modules import lastfm, tf2lobby
 
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 commands = {}
