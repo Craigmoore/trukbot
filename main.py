@@ -22,8 +22,10 @@ def connect(server, port):
 	ircsock.send("JOIN %s\n" % (channel))
 
 def doTF2Lobby(msg):
-	lobbyparser.main(msg)
-	sendmsg("%s name: %s map: %s" % (msg, tf2lobby.lobbyname, tf2lobby.mapname))
+	lobbymain = lobbyparser.main(msg)
+	lobbyname, mapname, missingclasses, numpeople, maxpeople = lobbymain
+	sendmsg("Lobby name: %s, map: %s, number of people: %s/%s" % (lobbyname, mapname, numpeople, maxpeople))
+	sendmsg("Missing classes: %s" % (missingclasses))
 
 def doLastFM():
 	npmain = np.main(lastfmuser, lastfmapikey)
