@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import re, socket, json, threading
 from ConfigParser import RawConfigParser
 from modules import lastfm, tf2lobby, links
@@ -25,8 +26,9 @@ def doTF2Lobby(msg):
 	sendmsg("%s name: %s map: %s" % (msg, tf2lobby.lobbyname, tf2lobby.mapname))
 
 def doLastFM():
-	np.main(lastfmuser, lastfmapikey)
-	sendmsg("Now playing: %s - %s (album: %s)" % (lastfm.artistName, lastfm.trackName, lastfm.albumName))
+	npmain = np.main(lastfmuser, lastfmapikey)
+	artistName, trackName, albumName = npmain
+	sendmsg("Now playing: %s - %s (album: %s)" % (artistName, trackName, albumName))
 
 def doLinks(msg):
 	linkparser.Main(msg)
