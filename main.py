@@ -6,7 +6,7 @@ from modules import lastfm, tf2lobby, links
 ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 commands = {}
 parser = RawConfigParser()
-np, linkparser, lobbyparser = lastfm.NowPlaying(), links.LinksParser(), tf2lobby.lobbyParser()
+np, lobbyparser = lastfm.NowPlaying(), tf2lobby.lobbyParser()
 
 parser.read('botcfg.cfg')
 
@@ -32,10 +32,6 @@ def doLastFM():
 	artistName, trackName, albumName = npmain
 	sendmsg("Now playing: %s - %s (album: %s)" % (artistName, trackName, albumName))
 
-def doLinks(msg):
-	linkparser.Main(msg)
-	sendmsg("Page title: %s" % (links.title))
-	
 def DispenserPicks():
 	global picks
 	picks += 1
