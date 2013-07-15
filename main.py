@@ -67,10 +67,10 @@ def cmds(nick, msg, sendmsg):
 			if re.search(x, msg, re.I):
 				exec(commands["owner_commands"].get(x))
 			
-def triggers(msg, sendmsg):
-	for x in commands["triggers"]:
-		if re.search(x, msg, re.I):
-			sendmsg(commands["triggers"].get(x))
+#def triggers(msg, sendmsg):
+#	for x in commands["triggers"]:
+#		if re.search(x, msg, re.I):
+#			sendmsg(commands["triggers"].get(x))
 
 def main():
 	dict()
@@ -91,9 +91,9 @@ def main():
 
 		if ircmsg.find(' PRIVMSG ') != -1:
 			nick = ircmsg.split('!')[0][1:]
-			msg = ircmsg.split(' PRIVMSG ')[-1].split(' :')[1]
+			msg = ircmsg.split(' PRIVMSG ')[-1].split(' :')[1].lower()
 			cmds(nick, msg, sendmsg)
-			triggers(msg, sendmsg)
+#			triggers(msg, sendmsg)
 
 main()
 
