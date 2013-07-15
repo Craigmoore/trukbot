@@ -1,9 +1,5 @@
 trukbot
 
-Simple, messy, probably badly made twitch.tv chatbot made in python.
-Comes with three modules, TF2Lobby.py, Lastfm.py and links.py.
-TF2Lobby module grabs lobby name and what map it is on, last.fm module grabs current playing song/song last played and links module grabs a page title if a url is posted in the chat.
-
-Adding commands is done through the existing commands.json file and configuration is done with botcfg.cfg.
+dead.
 
 This is all released under the LGPL3 license.
