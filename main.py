@@ -87,7 +87,7 @@ def main():
 		print ircmsg
 
 		if ircmsg.find('PING ') != -1:
-			ircsock.send('PING :Pong\n')
+			ircsock.send('PING :PONG\n')
 
 		if ircmsg.find(' PRIVMSG ') != -1:
 			nick = ircmsg.split('!')[0][1:]
