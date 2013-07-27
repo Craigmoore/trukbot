@@ -3,7 +3,6 @@ import re, socket, json, threading
 from ConfigParser import RawConfigParser
 from modules import lastfm, tf2lobby
 
-ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 commands = {}
 parser = RawConfigParser()
 np, lobbyparser = lastfm.NowPlaying(), tf2lobby.lobbyParser()
@@ -16,10 +15,12 @@ server, channel = "%s.jtvirc.com" % (streamname), "#%s" % (streamname)
 picks = 0
 
 def connect(server, port):
+	ircsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	ircsock.connect((server, port))
 	ircsock.send("Pass %s\n" % (password))
 	ircsock.send("NICK %s\n" % (botnick))
 	ircsock.send("JOIN %s\n" % (channel))
+	global ircsock
 
 def doTF2Lobby(msg):
 	lobbymain = lobbyparser.main(msg)
@@ -83,6 +84,13 @@ def main():
 	while True:
 		ircmsg = ircsock.recv(1024)
 		ircmsg = ircmsg.strip('\r\n')
+
+		if not ircmsg:
+			try:
+				ircsock.close()
+				connect(server, 6667)
+			except Exception as e:
+				print e
 
 		print ircmsg
 
