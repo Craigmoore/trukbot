@@ -9,7 +9,8 @@
 
     "execs": {
         "^!song$": "doLastFM()",
-        "(http://)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)",
+        "^!np$": "doLastFM()",
+		"(http://)tf2lobby\\.com/lobby\\?id=[0-9]{6}": "doTF2Lobby(msg)",
         "dispenser pick": "DispenserPicks()",
         "http\\://www\\.aceresport\\.com/[0-9]{3}/[a-zA-Z0-9]{13,15}": "sendmsg('.timeout ' + nick)"
    },
