@@ -11,7 +11,7 @@ parser.read('botcfg.cfg')
 
 botnick, password, streamname, lastfmuser, lastfmapikey, owner = parser.get('settings', 'botnick'), parser.get('settings', 'password'), parser.get('settings', 'streamname'), parser.get('settings', 'lastfmuser'), parser.get('settings', 'lastfmapikey'), parser.get('settings', 'owner')
 
-server, channel = "%s.jtvirc.com" % (streamname), "#%s" % (streamname)
+channel = "#%s" % (streamname)
 picks = 0
 
 def connect(server, port):
@@ -77,7 +77,7 @@ def main():
 	dict()
 
 	try:
-		connect(server, 6667)
+		connect("199.9.253.210", 6667)
 	except Exception as e:
 		print e
 
